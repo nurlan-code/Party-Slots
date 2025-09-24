@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsible Gaming - Party Slots</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a0033, #330066, #6600cc, #9900ff);
+            background-size: 400% 400%;
+            animation: gradientShift 8s ease infinite;
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* Disco Lights Background */
+        .disco-lights {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .light {
+            position: absolute;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            animation: discoMove 4s linear infinite;
+        }
+
+        .light:nth-child(1) { background: #ff0080; animation-delay: 0s; }
+        .light:nth-child(2) { background: #00ff80; animation-delay: 0.8s; }
+        .light:nth-child(3) { background: #8000ff; animation-delay: 1.6s; }
+        .light:nth-child(4) { background: #ff8000; animation-delay: 2.4s; }
+        .light:nth-child(5) { background: #0080ff; animation-delay: 3.2s; }
+
+        @keyframes discoMove {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+            10% { opacity: 1; }
+            90% { opacity: 1; }
+            100% { transform: translateY(-100px) rotate(360deg); opacity: 0; }
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            font-size: 2rem;
+            font-weight: 800;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: logoGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+            transform: translateY(-2px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            transition: width 0.3s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* Back to Home Button */
+        .back-home {
+            position: fixed;
+            top: 50%;
+            left: 20px;
+            transform: translateY(-50%);
+            background: rgba(255, 107, 107, 0.9);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            padding: 1rem 1.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1000;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .back-home:hover {
+            background: rgba(255, 107, 107, 1);
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 10px 30px rgba(255, 107, 107, 0.4);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding-top: 100px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            animation: heroFadeIn 1s ease-out;
+        }
+
+        @keyframes heroFadeIn {
+            0% { opacity: 0; transform: translateY(50px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: textGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Responsible Gaming Content */
+        .responsible-content {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 3rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .responsible-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(255, 107, 107, 0.03), rgba(78, 205, 196, 0.03));
+            z-index: 1;
+        }
+
+        .responsible-inner {
+            position: relative;
+            z-index: 2;
+        }
+
+        .important-notice {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: rgba(255, 107, 107, 0.1);
+            border-radius: 15px;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .important-notice h2 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-size: 1.8rem;
+        }
+
+        .important-notice p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .responsible-section {
+            margin-bottom: 3rem;
+        }
+
+        .responsible-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: #4ecdc4;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .responsible-section h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin: 2rem 0 1rem;
+            color: #ff6b6b;
+        }
+
+        .responsible-section p {
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            opacity: 0.9;
+        }
+
+        .responsible-section ul {
+            margin: 1rem 0;
+            padding-left: 2rem;
+        }
+
+        .responsible-section li {
+            margin-bottom: 0.5rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        .highlight-box {
+            background: rgba(78, 205, 196, 0.1);
+            border: 1px solid rgba(78, 205, 196, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .highlight-box h4 {
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .highlight-box p {
+            margin-bottom: 0;
+        }
+
+        .warning-box {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .warning-box h4 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .warning-box p {
+            margin-bottom: 0;
+        }
+
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .tip-card {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 1.5rem;
+            border-left: 4px solid #4ecdc4;
+            transition: all 0.3s ease;
+        }
+
+        .tip-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .tip-card h4 {
+            color: #4ecdc4;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .tip-card p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+        }
+
+        .resources-section {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-left: 5px solid #ff6b6b;
+        }
+
+        .resources-section h3 {
+            color: #ff6b6b;
+            margin-bottom: 1.5rem;
+        }
+
+        .resource-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .resource-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .resource-icon {
+            font-size: 1.5rem;
+            color: #4ecdc4;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(78, 205, 196, 0.1);
+            border-radius: 50%;
+        }
+
+        .resource-text h4 {
+            color: #fff;
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        .resource-text p {
+            margin-bottom: 0;
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .resource-text a {
+            color: #4ecdc4;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .resource-text a:hover {
+            color: #ff6b6b;
+        }
+
+        .contact-info {
+            background: rgba(255, 107, 107, 0.1);
+            border: 1px solid rgba(255, 107, 107, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .contact-info h4 {
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .contact-info p {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info a {
+            color: #ff6b6b;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: #4ecdc4;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 3rem 2rem 1rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: #ff6b6b;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 2rem;
+            opacity: 0.6;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .back-home {
+                left: 10px;
+                padding: 0.8rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .responsible-content {
+                padding: 2rem;
+            }
+
+            .responsible-section h2 {
+                font-size: 1.5rem;
+            }
+
+            .responsible-section h3 {
+                font-size: 1.3rem;
+            }
+
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-container {
+                padding: 0 1rem;
+            }
+
+            .container {
+                padding: 0 1rem;
+            }
+
+            .hero {
+                padding: 2rem 0;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .responsible-content {
+                padding: 1.5rem;
+            }
+
+            .important-notice {
+                padding: 1.5rem;
+            }
+
+            .footer {
+                padding: 2rem 1rem 1rem;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: rgba(0, 0, 0, 0.95);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: center;
+                padding-top: 2rem;
+                transition: left 0.3s ease;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 1rem 0;
+            }
+        }
+
+        /* Scroll Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Disco Lights -->
+    <div class="disco-lights" id="discoLights"></div>
+
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">🎰 Party Slots</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="games.html">Games</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Back to Home Button -->
+    <a href="index.html" class="back-home">
+        <i class="fas fa-home"></i>
+        Back Home
+    </a>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>🛡️ Responsible Gaming</h1>
+                <p>Gaming should be fun, safe, and responsible. Learn about healthy gaming habits, recognize warning signs, and find resources to help you or someone you know.</p>
+            </div>
+        </section>
+
+        <!-- Responsible Gaming Content -->
+        <section class="responsible-content fade-in">
+            <div class="responsible-inner">
+                <div class="important-notice">
+                    <h2>⚠️ Important Notice</h2>
+                    <p>Party Slots is a DEMO platform designed for entertainment and educational purposes only. No real money transactions occur, and no real prizes are awarded. This platform serves to promote responsible gaming practices and educate users about safe gaming habits.</p>
+                </div>
+
+                <div class="responsible-section">
+                    <h2><i class="fas fa-heart"></i> What is Responsible Gaming?</h2>
+                    <p>Responsible gaming means enjoying casino games and gambling activities in a way that is safe, controlled, and doesn't negatively impact your life, relationships, or finances. It's about maintaining a healthy balance between entertainment and other important aspects of life.</p>
+                    
+                    <div class="highlight-box">
+                        <h4>🎯 Key Principles</h4>
+                        <p>Responsible gaming is built on several key principles: setting limits, playing for entertainment only, never chasing losses, and seeking help when needed. Remember, gambling should enhance your life, not control it.</p>
+                    </div>
+                </div>
+
+                <div class="responsible-section">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Warning Signs of Problem Gaming</h2>
+                    <p>It's important to recognize the warning signs of problem gaming. If you or someone you know exhibits these behaviors, it may be time to seek help:</p>
+                    
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <h4>💰 Financial Signs</h4>
+                            <p>Spending more money than you can afford, borrowing money to gamble, or hiding gambling expenses from family and friends.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h4>⏰ Time Management</h4>
+                            <p>Spending excessive time gambling, neglecting work, family, or other responsibilities to play games.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h4>😰 Emotional Changes</h4>
+                            <p>Feeling anxious, depressed, or irritable when not gambling, or using gambling to escape from problems or negative emotions.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h4>🔄 Behavioral Patterns</h4>
+                            <p>Lying about gambling activities, chasing losses with bigger bets, or feeling unable to stop or control gambling behavior.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h4>👥 Relationship Impact</h4>
+                            <p>Gambling causing problems in relationships with family, friends, or colleagues, or isolating yourself to gamble.</p>
+                        </div>
+                        <div class="tip-card">
+                            <h4>🎯 Loss of Control</h4>
+                            <p>Feeling unable to set or stick to limits, gambling for longer periods than intended, or gambling until all money is gone.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="responsible-section">
+                    <h2><i class="fas fa-lightbulb"></i> Tips for Responsible Gaming</h2>
+                    <p>Here are some practical tips to help you maintain healthy gaming habits:</p>
+                    
+                    <h3>🎯 Set Clear Limits</h3>
+                    <ul>
+                        <li>Decide how much money you can afford to spend before you start playing</li>
+                        <li>Set a time limit for your gaming sessions</li>
+                        <li>Never gamble with money you need for essentials like rent, food, or bills</li>
+                        <li>Stick to your limits, even if you're winning</li>
+                    </ul>
+
+                    <h3>🧠 Maintain the Right Mindset</h3>
+                    <ul>
+                        <li>View gambling as entertainment, not as a way to make money</li>
+                        <li>Accept that losses are part of the experience</li>
+                        <li>Never chase losses by increasing your bets</li>
+                        <li>Celebrate wins but don't expect them to continue</li>
+                    </ul>
+
+                    <h3>⚖️ Keep Balance in Your Life</h3>
+                    <ul>
+                        <li>Make sure gambling doesn't interfere with work, family, or social activities</li>
+                        <li>Engage in other hobbies and interests</li>
+                        <li>Maintain healthy relationships and social connections</li>
+                        <li>Take regular breaks from gambling activities</li>
+                    </ul>
+
+                    <div class="warning-box">
+                        <h4>🚨 Remember</h4>
+                        <p>If you find it difficult to follow these guidelines or if gambling is causing problems in your life, it's important to seek help from professional resources or support groups.</p>
+                    </div>
+                </div>
+
+                <div class="responsible-section">
+                    <h2><i class="fas fa-tools"></i> Self-Help Tools and Resources</h2>
+                    <p>There are many tools and resources available to help you maintain responsible gaming habits:</p>
+                    
+                    <div class="resources-section">
+                        <h3>📚 Educational Resources</h3>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="resource-text">
+                                <h4>Gambling Education</h4>
+                                <p>Learn about game odds, house edge, and how casino games work to make informed decisions.</p>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-calculator"></i>
+                            </div>
+                            <div class="resource-text">
+                                <h4>Budget Planning</h4>
+                                <p>Use budgeting tools to track your spending and ensure gambling doesn't impact your financial health.</p>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="resource-text">
+                                <h4>Time Management</h4>
+                                <p>Set timers and reminders to help you stick to your gaming time limits.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="resources-section">
+                        <h3>🛠️ Self-Exclusion Tools</h3>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-ban"></i>
+                            </div>
+                            <div class="resource-text">
+                                <h4>Self-Exclusion Programs</h4>
+                                <p>Many casinos and online platforms offer self-exclusion programs to help you take a break from gambling.</p>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div class="resource-text">
+                                <h4>Deposit Limits</h4>
+                                <p>Set daily, weekly, or monthly deposit limits to control your spending on gambling activities.</p>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-user-times"></i>
+                            </div>
+                            <div class="resource-text">
+                                <h4>Account Closure</h4>
+                                <p>If needed, you can permanently close your gambling accounts to prevent further access.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="responsible-section">
+                    <h2><i class="fas fa-hands-helping"></i> Getting Help and Support</h2>
+                    <p>If you or someone you know is struggling with problem gambling, there are many resources available to provide help and support:</p>
+                    
+                    <div class="resources-section">
+                        <h3>🌐 International Resources</h3>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="resource-text">
+                                <h4>Gamblers Anonymous</h4>
+                                <p><a href="https://www.gamblersanonymous.org" target="_blank">www.gamblersanonymous.org</a> - Support groups and meetings worldwide</p>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="resource-text">
+                                <h4>National Helplines</h4>
+                                <p>Most countries have national gambling helplines. Check your local resources for immediate support.</p>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-user-md"></i>
+                            </div>
+                            <div class="resource-text">
+                                <h4>Professional Counseling</h4>
+                                <p>Mental health professionals specializing in gambling addiction can provide individual therapy and treatment.</p>
+                            </div>
+                        </div>
+                        <div class="resource-item">
+                            <div class="resource-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="resource-text">
+                                <h4>Family Support</h4>
+                                <p>Gam-Anon provides support for family members and friends affected by someone else's gambling problem.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="warning-box">
+                        <h4>🆘 Crisis Support</h4>
+                        <p>If you're in immediate crisis or having thoughts of self-harm, please contact your local emergency services or crisis hotline immediately. Your safety and well-being are the most important things.</p>
+                    </div>
+                </div>
+
+                <div class="responsible-section">
+                    <h2><i class="fas fa-graduation-cap"></i> Educational Information</h2>
+                    <p>Understanding how gambling works can help you make more informed decisions:</p>
+                    
+                    <h3>🎲 Understanding Casino Games</h3>
+                    <ul>
+                        <li><strong>House Edge:</strong> Every casino game has a built-in advantage for the house</li>
+                        <li><strong>Random Outcomes:</strong> All games are based on random number generators or physical randomness</li>
+                        <li><strong>No Guaranteed Wins:</strong> Past results don't influence future outcomes</li>
+                        <li><strong>Long-term Losses:</strong> The more you play, the more likely you are to lose money overall</li>
+                    </ul>
+
+                    <h3>📊 Probability and Odds</h3>
+                    <ul>
+                        <li>Learn about probability and how odds work in different games</li>
+                        <li>Understand that "hot streaks" and "cold streaks" are normal variations</li>
+                        <li>Recognize that no betting system can overcome the house edge</li>
+                        <li>Remember that each game outcome is independent of previous results</li>
+                    </ul>
+
+                    <div class="highlight-box">
+                        <h4>💡 Key Takeaway</h4>
+                        <p>The most important thing to remember is that gambling should be viewed as entertainment with a cost, not as an investment or way to make money. Always play within your means and never gamble more than you can afford to lose.</p>
+                    </div>
+                </div>
+
+                <div class="contact-info">
+                    <h4><i class="fas fa-envelope"></i> Need Help or Have Questions?</h4>
+                    <p>If you have questions about responsible gaming or need support, please don't hesitate to reach out:</p>
+                    <p><strong>Email:</strong> <a href="mailto:nurlanmammadli2@gmail.com">nurlanmammadli2@gmail.com</a></p>
+                    <p><strong>Developer:</strong> Nurlan Məmmədli - Frontend Developer</p>
+                    <p><strong>LinkedIn:</strong> <a href="https://www.linkedin.com/in/nurlan-məmmədli-b6a55b308" target="_blank">Nurlan Məmmədli</a></p>
+                    <p><strong>Remember:</strong> Seeking help is a sign of strength, not weakness.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="index.html">Home</a>
+                <a href="games.html">Games</a>
+                <a href="about.html">About</a>
+                <a href="contact.html">Contact</a>
+                <a href="terms.html">Terms</a>
+                <a href="privacy.html">Privacy</a>
+                <a href="responsible.html">Responsible Gaming</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Party Slots. All rights reserved. | Demo Social Casino Experience</p>
+                <p>🎰 Play responsibly and have fun! 🎰</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navLinks = document.getElementById('navLinks');
+
+        mobileMenuBtn.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        navLinks.addEventListener('click', function(e) {
+            if (e.target.tagName === 'A') {
+                navLinks.classList.remove('active');
+            }
+        });
+
+        // Disco Lights Animation
+        function createDiscoLights() {
+            const discoContainer = document.getElementById('discoLights');
+            const lightCount = 14;
+
+            for (let i = 0; i < lightCount; i++) {
+                const light = document.createElement('div');
+                light.className = 'light';
+                light.style.left = Math.random() * 100 + '%';
+                light.style.animationDelay = Math.random() * 4 + 's';
+                light.style.animationDuration = (Math.random() * 2 + 3) + 's';
+                discoContainer.appendChild(light);
+            }
+        }
+
+        // Scroll Animations
+        function handleScrollAnimations() {
+            const elements = document.querySelectorAll('.fade-in');
+            const windowHeight = window.innerHeight;
+
+            elements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+
+                if (elementTop < windowHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+
+        // Navbar scroll effect
+        function handleNavbarScroll() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.style.background = 'rgba(0, 0, 0, 0.95)';
+            } else {
+                navbar.style.background = 'rgba(0, 0, 0, 0.8)';
+            }
+        }
+
+        // Initialize animations
+        createDiscoLights();
+
+        // Event listeners
+        window.addEventListener('scroll', function() {
+            handleScrollAnimations();
+            handleNavbarScroll();
+        });
+
+        // Initial call
+        handleScrollAnimations();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effects to tip cards
+        document.querySelectorAll('.tip-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Add hover effects to resource items
+        document.querySelectorAll('.resource-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateX(10px) scale(1.02)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateX(0) scale(1)';
+            });
+        });
+
+        // Add particle effect on click
+        document.addEventListener('click', function(e) {
+            const particle = document.createElement('div');
+            particle.style.position = 'fixed';
+            particle.style.left = e.clientX + 'px';
+            particle.style.top = e.clientY + 'px';
+            particle.style.width = '4px';
+            particle.style.height = '4px';
+            particle.style.background = '#4ecdc4';
+            particle.style.borderRadius = '50%';
+            particle.style.pointerEvents = 'none';
+            particle.style.zIndex = '9999';
+            particle.style.animation = 'particleFade 1s ease-out forwards';
+            
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                particle.remove();
+            }, 1000);
+        });
+
+        // Add particle animation CSS
+        const particleStyle = document.createElement('style');
+        particleStyle.textContent = `
+            @keyframes particleFade {
+                0% {
+                    opacity: 1;
+                    transform: scale(1);
+                }
+                100% {
+                    opacity: 0;
+                    transform: scale(0) translateY(-50px);
+                }
+            }
+        `;
+        document.head.appendChild(particleStyle);
+    </script>
+</body>
+</html>
